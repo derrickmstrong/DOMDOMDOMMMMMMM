@@ -1,65 +1,58 @@
-let num = 1;
-
+// Initialize ID number
+let idNum = 1;
+// Create Button
 const addSquare = document.createElement('button');
 addSquare.textContent = 'Add Square';
 document.body.appendChild(addSquare);
-
-const divContainer = document.createElement('div')
+// Create Container Div
+const divContainer = document.createElement('div');
 divContainer.classList.add('container');
-document.body.appendChild(divContainer)
-
+document.body.appendChild(divContainer);
+// Add Elements to Container on Click
 addSquare.addEventListener('click', function () {
   const div = document.createElement('div');
   div.className = 'box';
-  div.setAttribute('id', num);
-  num++;
-divContainer.appendChild(div);
-
+  div.setAttribute('id', idNum);
+  idNum++;
+  divContainer.appendChild(div);
+  // EventListeners
   div.addEventListener('click', randomColor);
-
-  div.addEventListener('mouseover', onMouseOver);
-
-  div.addEventListener('mouseout', onMouseOut);
-
-  div.addEventListener('dblclick', removeSquare);
-
+  div.addEventListener('mouseover', showId);
+  div.addEventListener('mouseout', hideId);
+  div.addEventListener('dblclick', removeDiv);
   // Function Declarations
-  function onMouseOver() {
-    div.textContent = div.id;
-  }
-  function onMouseOut() {
-    div.textContent = '';
-  }
-  function randomColor() {
+  function randomColor(e) {
     const colors = [
       'blue',
       'red',
       'brown',
-      'yellow',
       'green',
       'purple',
       'orange',
-      'black',
+      'pink',
     ];
     const int = Math.floor(Math.random() * Math.floor(colors.length));
-    div.style.backgroundColor = colors[int];
-    div.style.color = 'white';
+    e.target.style.backgroundColor = colors[int];
+    e.target.style.color = 'white';
   }
-
-  function removeSquare() {
+  function showId(e) {
+    e.target.textContent = div.id;
+  }
+  function hideId(e) {
+    e.target.textContent = '';
+  }
+  function removeDiv(e) {
     if (div.id % 2 === 0) {
-      console.log('Even');
       if (div.nextElementSibling) {
-        div.nextElementSibling.remove();
+        e.target.nextElementSibling.remove();
       } else {
         alert('No Next Sibling!');
       }
     } else {
-      console.log('Odd');
       if (div.previousElementSibling) {
-        div.previousElementSibling.remove();
+        e.target.previousElementSibling.remove();
       } else {
-          alert('No Previous Sibling!');
+        alert('No Previous Sibling!');
       }
     }
   }
