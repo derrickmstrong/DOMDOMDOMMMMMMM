@@ -4,26 +4,32 @@ const addSquare = document.createElement('button');
 addSquare.textContent = 'Add Square';
 document.body.appendChild(addSquare);
 
+const divContainer = document.createElement('div')
+divContainer.classList.add('container');
+document.body.appendChild(divContainer)
+
 addSquare.addEventListener('click', function () {
   const div = document.createElement('div');
   div.className = 'box';
   div.setAttribute('id', num);
   num++;
-  document.body.appendChild(div);
+divContainer.appendChild(div);
 
   div.addEventListener('click', randomColor);
 
-  div.addEventListener('mouseover', function () {
-    div.textContent = div.id;
-  });
+  div.addEventListener('mouseover', onMouseOver);
 
-  div.addEventListener('mouseout', function () {
-    div.textContent = '';
-  });
+  div.addEventListener('mouseout', onMouseOut);
 
   div.addEventListener('dblclick', removeSquare);
 
   // Function Declarations
+  function onMouseOver() {
+    div.textContent = div.id;
+  }
+  function onMouseOut() {
+    div.textContent = '';
+  }
   function randomColor() {
     const colors = [
       'blue',
@@ -52,9 +58,8 @@ addSquare.addEventListener('click', function () {
       console.log('Odd');
       if (div.previousElementSibling) {
         div.previousElementSibling.remove();
-        if (div.previousElementSibling === addSquare) {
+      } else {
           alert('No Previous Sibling!');
-        }
       }
     }
   }
