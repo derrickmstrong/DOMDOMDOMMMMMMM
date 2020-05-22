@@ -1,26 +1,25 @@
-// Initialize ID number
 let idNum = 1;
-// Create Button
+
 const addSquare = document.createElement('button');
 addSquare.textContent = 'Add Square';
 document.body.appendChild(addSquare);
-// Create Container Div
+
 const divContainer = document.createElement('div');
 divContainer.classList.add('container');
 document.body.appendChild(divContainer);
-// Add Elements to Container on Click
+
 addSquare.addEventListener('click', function () {
   const div = document.createElement('div');
   div.className = 'box';
   div.setAttribute('id', idNum);
   idNum++;
   divContainer.appendChild(div);
-  // EventListeners
+
   div.addEventListener('click', randomColor);
   div.addEventListener('mouseover', showId);
   div.addEventListener('mouseout', hideId);
   div.addEventListener('dblclick', removeDiv);
-  // Function Declarations
+
   function randomColor(e) {
     const colors = [
       'blue',
