@@ -16,13 +16,13 @@ document.addEventListener('DOMContentLoaded', function () {
     idNum++;
     divContainer.appendChild(div);
 
-    div.addEventListener('click', randomColor);
+    div.addEventListener('click', handleClick);
     div.addEventListener('mouseover', showId);
     div.addEventListener('mouseout', hideId);
-    div.addEventListener('dblclick', removeDiv);
+    div.addEventListener('dblclick', handleDblClick);
 
     // Function Definitions
-    function randomColor(e) {
+    function handleClick(e) {
       const colors = [
         'blue',
         'red',
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function hideId(e) {
       e.target.textContent = '';
     }
-    function removeDiv(e) {
+    function handleDblClick(e) {
       if (div.id % 2 === 0) {
         if (div.nextElementSibling) {
           e.target.nextElementSibling.remove();
